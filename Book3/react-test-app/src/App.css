@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.messageStyle {
+  color: #333;
+}
+.errorStyle {
+  color: #ff0000;
+}
