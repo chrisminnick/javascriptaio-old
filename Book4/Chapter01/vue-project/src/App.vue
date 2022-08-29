@@ -1,6 +1,7 @@
 <script setup>
 import Listing0106 from '../../Listing0106.vue';
 import Listing0107 from '../../Listing0107.vue';
+import Listing0203 from '../../../Chapter02/Listing0203.vue';
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import Listing0107 from '../../Listing0107.vue';
     <div class="wrapper">
       <Listing0106 />
       <Listing0107 />
+      <Listing0203 />
     </div>
   </header>
 </template>
