@@ -1,7 +1,7 @@
 <script setup>
-import Listing0504 from './components/Listing0504.vue';
+import Listing0507 from './components/Listing0507.vue';
 </script>
 
 <template>
-  <Listing0504 />
+  <Listing0507 />
 </template>

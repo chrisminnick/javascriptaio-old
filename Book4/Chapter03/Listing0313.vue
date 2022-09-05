@@ -1,10 +1,11 @@
 <script setup>
-import Listing0318 from './components/Listing0318.vue';
+import ChildComponent from './components/ChildComponent.vue';
 </script>
 
 <template>
   <div id="#app">
-    <Listing0318 />
+    <h1>Welcome to my App</h1>
+    <ChildComponent />
   </div>
 </template>
 
