@@ -19,6 +19,8 @@ function addPost(){
       {/each}
   </div>
 </main>
+this is just some text
+number
 
 <style>
   
