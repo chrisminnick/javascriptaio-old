@@ -9,7 +9,7 @@ function addPost(){
 </script>
 
 <main>
-  <h1>Loner</h1>
+  <h1>Soliloquy</h1>
   <h2>Social media without the sharing</h2>
   <label>Talk to yourself: <input bind:value={newPost} type="text"></label>
   <button on:click={addPost}>Post it!</button>
@@ -19,8 +19,6 @@ function addPost(){
       {/each}
   </div>
 </main>
-this is just some text
-number
 
 <style>
   
