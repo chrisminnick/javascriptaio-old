@@ -1,5 +1,6 @@
 <script>
   import ErrorMessage from './lib/ErrorMessage.svelte'
+  import ErrorHtml from './lib/ErrorHTML.svelte'
   let posts = [];
   let newPost = '';
   let charactersLeft;
@@ -27,7 +28,8 @@
   </script>
   
   <main>
-    <h1>Soliloquy</h1>
+    <ErrorHtml />
+    <!-- <h1>Soliloquy</h1>
     <h2>Social media without the sharing</h2>
     <div>
       <label>Talk to yourself: 
@@ -43,7 +45,7 @@
         {#each posts as post}
           <div>{post}</div>
         {/each}
-    </div>
+    </div> -->
   </main>
 
   <style>
