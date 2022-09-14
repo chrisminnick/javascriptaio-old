@@ -1,5 +1,6 @@
 <script>
   import ErrorMessage from './lib/ErrorMessage.svelte'
+  import ThemeSelector from './lib/ThemeSelector.svelte'
   let posts = []; // array of posts
   let newPost = ''; // new post text
   let charactersLeft; // number of characters left
@@ -28,7 +29,7 @@
   }
   
   </script>
-  
+  <ThemeSelector />
   <main>
     <h1>Soliloquy</h1>
     <h2>Social media without the sharing</h2>
