@@ -30,7 +30,8 @@
   </script>
   
   <main>
-    <h1>Soliloquy</h1>
+    <ErrorHtml />
+     <h1>Soliloquy</h1>
     <h2>Social media without the sharing</h2>
     <!--note: do we need a better tagline? -->
     <div>
