@@ -1,17 +1,8 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function Obstacle({ obstaclePosition }) {
-  return (
-    <div
-      className="obstacle"
-      style={{
-        left: obstaclePosition.x,
-        top: obstaclePosition.y,
-      }}
-    ></div>
-  );
+  return <div className="obstacle" style={obstaclePosition}></div>;
 }
 
 function Map({ numberOfObstacles, children }) {
@@ -23,11 +14,15 @@ function Map({ numberOfObstacles, children }) {
   const generateRandomPosition = () => {
     const x = Math.floor(Math.random() * 100) + 'vw';
     const y = Math.floor(Math.random() * 100) + 'vh';
-    return { x, y };
+    return { left: x, top: y };
   };
   const obstaclePositions = Array(numberOfObstacles)
     .fill()
-    .map(generateRandomPosition);
+    .map(() => {
+      const x = Math.floor(Math.random() * 100) + 'vw';
+      const y = Math.floor(Math.random() * 100) + 'vh';
+      return { left: x, top: y };
+    });
   const generateMap = (numberOfObstacles) => {
     const obstacles = [];
     for (let i = 0; i < numberOfObstacles; i++) {
@@ -72,22 +67,22 @@ export default function App() {
     switch (e.key) {
       case 'ArrowUp':
         setPosition((prev) => {
-          return { x: prev.x, y: prev.y - 1 };
+          return { left: prev.x, top: prev.y - 1 };
         });
         break;
       case 'ArrowDown':
         setPosition((prev) => {
-          return { x: prev.x, y: prev.y + 1 };
+          return { left: prev.x, top: prev.y + 1 };
         });
         break;
       case 'ArrowLeft':
         setPosition((prev) => {
-          return { x: prev.x - 1, y: prev.y };
+          return { left: prev.x - 1, top: prev.y };
         });
         break;
       case 'ArrowRight':
         setPosition((prev) => {
-          return { x: prev.x + 1, y: prev.y };
+          return { left: prev.x + 1, top: prev.y };
         });
         break;
     }
