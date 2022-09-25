@@ -1,4 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
+Map.propTypes = {
+  children: PropTypes.node,
+  numberOfObstacles: PropTypes.number,
+};
+
+Ball.propTypes = {
+  position: PropTypes.object,
+};
+
+Obstacle.propTypes = {
+  obstaclePosition: PropTypes.object,
+};
 
 function App() {
   useEffect(() => {
@@ -84,7 +98,7 @@ function App() {
   );
 }
 
-function Map({ children, numberOfObstacles }) {
+export function Map({ children, numberOfObstacles }) {
   const [obstacles, setObstacles] = useState([]);
 
   useEffect(() => {
@@ -111,10 +125,10 @@ function Map({ children, numberOfObstacles }) {
   };
 
   return (
-    <>
+    <div>
       {obstacles}
       {children}
-    </>
+    </div>
   );
 }
 
@@ -133,7 +147,13 @@ function Ball({ position }) {
 }
 
 function Obstacle({ obstaclePosition }) {
-  return <div className="obstacle" style={obstaclePosition}></div>;
+  return (
+    <div
+      className="obstacle"
+      data-testid="obstacle"
+      style={obstaclePosition}
+    ></div>
+  );
 }
 
 export default App;
