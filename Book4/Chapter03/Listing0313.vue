@@ -1,8 +1,8 @@
 <template>
-  <h1>No they shouldn't!</h1>
+  <h1>
+    <slot name="title">No title provided</slot>
+  </h1>
+  <div>
+    <slot name="body">No body provided</slot>
+  </div>
 </template>
-<style scoped>
-h1 {
-  border: none;
-}
-</style>
