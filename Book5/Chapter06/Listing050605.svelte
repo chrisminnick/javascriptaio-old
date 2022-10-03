@@ -1,5 +1,6 @@
 <script>
-  import userprefs from './stores/userprefs.js';
+  import { onDestroy } from 'svelte';
+  import { userprefs } from './stores/userprefs.js';
 
   let languagePref;
   let themePref;

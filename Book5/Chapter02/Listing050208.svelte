@@ -1,18 +1,16 @@
 <script>
-  import ErrorMessage from './lib/ErrorMessage.svelte';
   let posts = [];
   let newPost = '';
   let charactersLeft;
-  let charactersLeftClass;
+  let charactersLeftStyle;
   let error = '';
 
   $: charactersLeft = 34 - newPost.length;
 
   $: if (charactersLeft < 0) {
-    charactersLeftClass = 'error';
+    charactersLeftStyle = 'color: red';
   } else {
-    charactersLeftClass = '';
-    error = '';
+    charactersLeftStyle = 'color: black';
   }
 
   function addPost() {
@@ -28,16 +26,14 @@
 <main>
   <h1>Soliloquy</h1>
   <h2>Social media without the sharing</h2>
-  <div>
-    <label
-      >Talk to yourself:
-      <input bind:value={newPost} type="text" />
-    </label>
-    <span class={charactersLeftClass}>
-      {charactersLeft}
-    </span>
-  </div>
-  <div><ErrorMessage message={error} /></div>
+  <label
+    >Talk to yourself:
+    <input bind:value={newPost} type="text" />
+  </label>
+  <span style={charactersLeftStyle}>
+    {charactersLeft}
+  </span>
+  <p>{error}</p>
   <button on:click={addPost}>Post it!</button>
   <div>
     {#each posts as post}
@@ -45,9 +41,3 @@
     {/each}
   </div>
 </main>
-
-<style>
-  div :global(.error) {
-    color: red;
-  }
-</style>
