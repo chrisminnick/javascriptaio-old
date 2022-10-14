@@ -1,16 +1,16 @@
 <script>
-export default {
-  data() {
-    return {
-      sheepCount: 0,
-    };
-  },
-  methods: {
-    countASheep() {
-      this.sheepCount++;
+  export default {
+    data() {
+      return {
+        sheepCount: 0,
+      };
     },
-  },
-};
+    methods: {
+      countASheep() {
+        this.sheepCount++;
+      },
+    },
+  };
 </script>
 
 <template>
@@ -18,3 +18,7 @@ export default {
   <h2>Current Count: {{ sheepCount }}</h2>
   <button @click="countASheep">Count a Sheep</button>
 </template>
+
+<style>
+
+</style>
