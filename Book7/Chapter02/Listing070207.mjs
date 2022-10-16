@@ -2,14 +2,17 @@ import fs from 'fs';
 const fileToRead = __dirname + '/inputFile.txt';
 const readStream = fs.createReadStream(fileToRead);
 
-readStream.on('data', (chunk) => {
-  console.log(chunk.toString());
-});
+let data = '';
+let chunk;
 
+readStream.on('readable', () => {
+  while ((chunk = readStream.read()) !== null) {
+    data += chunk;
+  }
+});
 readStream.on('end', () => {
-  console.log('End of file reached');
+  console.log(data);
 });
-
 readStream.on('error', (err) => {
   console.log(err);
 });
