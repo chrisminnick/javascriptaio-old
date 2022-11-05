@@ -1,0 +1,33 @@
+POST http://localhost:3000/api/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "test",
+    "content": "this is a test"
+}
+
+###
+GET http://localhost:3000/api/posts HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3000/api/posts/636683b6b7a919666cf935cd HTTP/1.1
+content-type: application/json
+
+###
+
+PUT http://localhost:3000/api/posts/636683b6b7a919666cf935cd HTTP/1.1
+content-type: application/json
+
+{
+    "id": "636683b6b7a919666cf935cd",
+    "title": "test",
+    "content": "this is only a test"
+}
+
+###
+
+DELETE http://localhost:3000/api/posts/636683b6b7a919666cf935cd HTTP/1.1
+content-type: application/json
+
+###
