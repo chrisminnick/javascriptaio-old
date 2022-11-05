@@ -8,8 +8,7 @@ const router = express.Router();
 // Creating a new post
 router.post('', (req, res, next) => {
   const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
+    text: req.body.text,
   });
   post.save().then((createdPost) => {
     res.status(201).json({
@@ -26,8 +25,7 @@ router.post('', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   const post = new Post({
     _id: req.body.id,
-    title: req.body.title,
-    content: req.body.content,
+    text: req.body.text,
   });
   Post.updateOne({ _id: req.params.id }, post).then((result) => {
     res.status(200).json({ message: 'Update successful!' });

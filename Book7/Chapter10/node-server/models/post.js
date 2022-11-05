@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 
 // Creating the post schema
 const postSchema = mongoose.Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
+  text: { type: String, required: true },
 });
 
 // Exporting the model

@@ -2,8 +2,7 @@ POST http://localhost:3000/api/posts HTTP/1.1
 content-type: application/json
 
 {
-    "title": "test",
-    "content": "this is a test"
+    "text": "test post 1"
 }
 
 ###
@@ -21,13 +20,12 @@ content-type: application/json
 
 {
     "id": "636683b6b7a919666cf935cd",
-    "title": "test",
-    "content": "this is only a test"
+    "text": "test"
 }
 
 ###
 
-DELETE http://localhost:3000/api/posts/636683b6b7a919666cf935cd HTTP/1.1
+DELETE http://localhost:3000/api/posts/636685ba0b87a4fc0343c90d HTTP/1.1
 content-type: application/json
 
 ###
