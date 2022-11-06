@@ -8,7 +8,7 @@ content-type: application/json
 ###
 GET http://localhost:3000/api/posts HTTP/1.1
 content-type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2hyaXNAbWlubmljay5jb20iLCJpYXQiOjE2Njc3Njc4MTgsImV4cCI6MTY2Nzc2OTYxOH0.51LCWT2EmaljKDc56S7deWGFEnHNEihA_8REd_cgC-Y
 ###
 GET http://localhost:3000/api/posts/636683b6b7a919666cf935cd HTTP/1.1
 content-type: application/json

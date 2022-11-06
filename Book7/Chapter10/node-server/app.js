@@ -1,6 +1,5 @@
-// REST API server with login and CRUD operations for a social network app using mongoDB
+require('dotenv').config();
 
-// Importing the required modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');

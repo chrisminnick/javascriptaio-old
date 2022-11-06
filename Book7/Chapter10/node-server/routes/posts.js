@@ -1,12 +1,30 @@
-// Importing the required modules
+require('dotenv').config();
+
 const express = require('express');
+const jwt = require('jsonwebtoken');
 
 const Post = require('../models/post');
 
 const router = express.Router();
 
+function validateToken(req, res, next) {
+  //get token from request header
+  const authHeader = req.headers['authorization'];
+  const token = authHeader.split(' ')[1];
+  //the request header contains the token "Bearer <token>", split the string and use the second value in the split array.
+  if (token == null) res.sendStatus(400).send('Token not present');
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      res.status(403).send('Token invalid');
+    } else {
+      req.user = user;
+      next(); //proceed to the next action in the calling function
+    }
+  });
+}
+
 // Creating a new post
-router.post('', (req, res, next) => {
+router.post('', validateToken, (req, res, next) => {
   const post = new Post({
     text: req.body.text,
   });
@@ -22,7 +40,7 @@ router.post('', (req, res, next) => {
 });
 
 // Updating a post
-router.put('/:id', (req, res, next) => {
+router.put('/:id', validateToken, (req, res, next) => {
   const post = new Post({
     _id: req.body.id,
     text: req.body.text,
@@ -33,7 +51,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // Getting all the posts
-router.get('', (req, res, next) => {
+router.get('', validateToken, (req, res, next) => {
   Post.find().then((documents) => {
     res.status(200).json({
       message: 'Posts fetched successfully!',
@@ -43,7 +61,7 @@ router.get('', (req, res, next) => {
 });
 
 // Getting a single post
-router.get('/:id', (req, res, next) => {
+router.get('/:id', validateToken, (req, res, next) => {
   Post.findById(req.params.id).then((post) => {
     if (post) {
       res.status(200).json(post);
@@ -54,12 +72,11 @@ router.get('/:id', (req, res, next) => {
 });
 
 // Deleting a post
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', validateToken, (req, res, next) => {
   Post.deleteOne({ _id: req.params.id }).then((result) => {
     console.log(result);
     res.status(200).json({ message: 'Post deleted!' });
   });
 });
 
-// Exporting the router
 module.exports = router;

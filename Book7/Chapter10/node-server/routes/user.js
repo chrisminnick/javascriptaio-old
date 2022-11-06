@@ -1,4 +1,5 @@
-// Importing the required modules
+require('dotenv').config();
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -6,6 +7,20 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 const router = express.Router();
+
+function generateAccessToken(username) {
+  return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: '1800s',
+  });
+}
+
+let refreshTokens = [];
+
+function generateRefreshToken(username) {
+  const refreshToken = jwt.sign(username, process.env.REFRESH_TOKEN_SECRET);
+  refreshTokens.push(refreshToken);
+  return refreshToken;
+}
 
 // Creating a new user
 router.post('/signup', (req, res, next) => {
@@ -49,14 +64,12 @@ router.post('/login', (req, res, next) => {
           message: 'Auth failed!',
         });
       }
-      const token = jwt.sign(
-        { email: fetchedUser.email, userId: fetchedUser._id },
-        'secret_this_should_be_longer',
-        { expiresIn: '1h' }
-      );
+      const accessToken = generateAccessToken({ user: req.body.email });
+      const refreshToken = generateRefreshToken({ user: req.body.email });
+
       res.status(200).json({
-        token: token,
-        expiresIn: 3600,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
         userId: fetchedUser._id,
       });
     })
@@ -67,5 +80,22 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-// Exporting the router
+//REFRESH TOKEN API
+router.post('/refreshToken', (req, res) => {
+  if (!refreshTokens.includes(req.body.token))
+    res.status(400).send('Refresh Token Invalid');
+  refreshTokens = refreshTokens.filter((c) => c != req.body.token);
+  //remove the old refreshToken from the refreshTokens list
+  const accessToken = generateAccessToken({ user: req.body.name });
+  const refreshToken = generateRefreshToken({ user: req.body.name });
+  //generate new accessToken and refreshTokens
+  res.json({ accessToken: accessToken, refreshToken: refreshToken });
+});
+
+router.delete('/logout', (req, res) => {
+  refreshTokens = refreshTokens.filter((c) => c != req.body.token);
+  //remove the old refreshToken from the refreshTokens list
+  res.status(204).send('Logged out!');
+});
+
 module.exports = router;
