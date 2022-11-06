@@ -10,8 +10,8 @@ const router = express.Router();
 
 function generateAccessToken(username) {
   return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: '1800s',
-  });
+    expiresIn: '300s',
+  }); //expires in 5 minutes
 }
 
 let refreshTokens = [];
