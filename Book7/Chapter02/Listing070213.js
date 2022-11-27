@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { makeBig } from './Listing070212.mjs';
+import { makeBig } from './Listing070212.js';
 
 const readableStream = fs.createReadStream('mobydick.txt');
 const writableStream = fs.createWriteStream('mobydick-copy.txt');

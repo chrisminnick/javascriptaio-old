@@ -1,5 +1,5 @@
 import fs from 'fs';
-const fileToRead = __dirname + '/inputFile.txt';
+const fileToRead = process.cwd() + '/inputFile.txt';
 const readStream = fs.createReadStream(fileToRead);
 
 let data = '';

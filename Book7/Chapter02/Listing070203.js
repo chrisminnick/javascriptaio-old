@@ -5,13 +5,13 @@ const app = server.createServer();
 
 app.on('request', (req, res) => {
   const book = fs.createReadStream('./war-and-peace.txt');
-
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
   book.on('data', (chunk) => {
     console.log('chunk received');
     console.log(chunk);
+    res.write(chunk.toString());
   });
-  //book.pipe(res);
-  res.end();
+  book.on('end', () => res.end());
 });
 
 app.listen(3000);

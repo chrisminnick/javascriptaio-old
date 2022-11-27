@@ -1,8 +1,8 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
 
-const logFile = path.join(__dirname, 'logFile.txt');
+const logFile = path.join(process.cwd(), 'logFile.txt');
 const logFileStream = fs.createWriteStream(logFile);
 
 const log = async (message) => {
