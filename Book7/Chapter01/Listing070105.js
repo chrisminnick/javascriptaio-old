@@ -1,16 +1,17 @@
 const metricConversions = require('./metricConversions');
 
-exports.convertToMetric = (value, unit) => {
+const convertToMetric = (value, unit) => {
   switch (unit) {
     case 'in':
       return metricConversions.inchesToCentimeters(value);
-    case 'ft':
-      return metricConversions.feetToCentimeters(value);
-    case 'yd':
-      return metricConversions.yardsToMeters(value);
+    case 'gl':
+      return metricConversions.gallonsToLiters(value);
+    case 'lb':
+      return metricConversions.poundsToKilograms(value);
     case 'mi':
       return metricConversions.milesToKilometers(value);
     default:
       return value;
   }
 };
+console.log(`One inch is ${convertToMetric(1, 'in')} centimeters.`);

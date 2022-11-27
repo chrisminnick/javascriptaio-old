@@ -1,6 +1,6 @@
-import { triangleArea, trianglePerimeter } from './triangleCalc.mjs';
+import { triangleArea, trianglePerimeter } from './Listing070106.mjs';
 
-function rightTriangleMaker(size) {
+function triangleMaker(size) {
   const area = triangleArea(size, size);
   const perimeter = trianglePerimeter(size, size, size);
 
@@ -23,7 +23,7 @@ function rightTriangleMaker(size) {
   };
 }
 
-const { area, perimeter, triangle } = rightTriangleMaker(18);
+const { area, perimeter, triangle } = triangleMaker(4);
 console.log(`Area: ${area}`);
 console.log(`Perimeter: ${perimeter}`);
 console.log(triangle.join('\n'));
