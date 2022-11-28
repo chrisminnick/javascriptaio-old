@@ -1,6 +1,6 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
 
 function getBase64Image(img) {
   // Read the image as a binary data
@@ -16,9 +16,9 @@ http
 
     // Send the response body
     res.write('<img src="data:image/png;base64,');
-    res.write(getBase64Image(path.join(__dirname, 'images', 'nodejs.png')));
+    res.write(getBase64Image(path.join(process.cwd(), 'images', 'nodejs.png')));
     res.end('"/>');
   })
-  .listen(8081);
+  .listen(3000);
 
-console.log('Server running at http://localhost:8081/');
+console.log('Server running at http://localhost:3000/');

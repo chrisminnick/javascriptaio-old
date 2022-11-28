@@ -1,15 +1,12 @@
 {
-  "name": "chapter01",
+  "name": "chapter03",
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "Listing0107.mjs",
+  "main": "Listing070301.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.0.2"
-  }
+  "license": "ISC"
 }

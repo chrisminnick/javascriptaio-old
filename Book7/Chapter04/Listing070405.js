@@ -1,4 +1,4 @@
-import { promise as fs } from 'fs';
+import { promises as fs } from 'fs';
 import https from 'https';
 
 const privateKey = fs.readFileSync('private.key');
