@@ -6,7 +6,7 @@ async function main() {
   try {
     const response = await getData('https://nothinghere');
   } catch (error) {
-    console.log(`There's been an error: ` + error.message);
+    console.log(`An error has occurred`);
   }
 }
 

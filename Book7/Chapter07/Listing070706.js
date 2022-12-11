@@ -23,6 +23,5 @@ getUserDetailsWithPromise(1)
   })
   .finally(() => {
     isLoading = false;
+    console.log('isLoading: ' + isLoading);
   });
-
-main();
