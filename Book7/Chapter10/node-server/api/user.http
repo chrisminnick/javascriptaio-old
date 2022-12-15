@@ -2,7 +2,7 @@ POST http://localhost:3000/api/user/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "chris@minnick.com",
+    "email": "chris@watzthisx2.com",
     "password": "testing123"
 }
 
@@ -12,7 +12,7 @@ POST http://localhost:3000/api/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "chris@minnick.com",
+    "email": "testuser@test.com",
     "password": "testing123"
 }
 

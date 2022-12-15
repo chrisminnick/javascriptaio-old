@@ -10,7 +10,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2hyaXNAb
 
 GET http://localhost:3000/api/posts HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2hyaXNAbWlubmljay5jb20iLCJpYXQiOjE2NzA4Njc5OTAsImV4cCI6MTY3MDg2ODI5MH0.uVEL61EF48Q5IkHfXlxrT3yxop_2vyTOWVyK7upkgtI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2hyaXNAd2F0enRoaXMuY29tIiwiaWF0IjoxNjcwOTI4MDA2LCJleHAiOjE2NzA5MjgzMDZ9.sYW2qIXfbmppQR-Yr0JaTqyY-CU6fU2YoNLd_RyWgnk
 
 ###
 

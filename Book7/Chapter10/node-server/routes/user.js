@@ -1,10 +1,10 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const express = require('express');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
-const User = require('../models/user');
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import User from '../models/user.js';
 
 const router = express.Router();
 
@@ -22,62 +22,52 @@ function generateRefreshToken(username) {
   return refreshToken;
 }
 
-// Creating a new user
-router.post('/signup', (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then((hash) => {
-    const user = new User({
-      email: req.body.email,
-      password: hash,
-    });
-    user
-      .save()
-      .then((result) => {
-        res.status(201).json({
-          message: 'User created!',
-          result: result,
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({
-          message: 'Invalid authentication credentials!',
-        });
+router.post('/signup', async (req, res) => {
+  User.findOne({ email: req.body.email }, async (err, doc) => {
+    if (err) throw err;
+    if (doc) {
+      res.status(409).json({
+        message: 'User already exists!',
       });
+    }
+    if (!doc) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+      const newUser = new User({
+        email: req.body.email,
+        password: hashedPassword,
+      });
+      await newUser.save();
+      res.status(201).json({
+        message: 'User created!',
+      });
+    }
   });
 });
 
 // Logging in a user
-router.post('/login', (req, res, next) => {
-  let fetchedUser;
-  User.findOne({ email: req.body.email })
-    .then((user) => {
-      if (!user) {
-        return res.status(401).json({
-          message: 'Auth failed!',
-        });
-      }
-      fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password);
-    })
-    .then((result) => {
-      if (!result) {
-        return res.status(401).json({
-          message: 'Auth failed!',
-        });
-      }
+router.post('/login', (req, res) => {
+  User.findOne({ email: req.body.email }, async (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      res.status(401).json({
+        message: 'Login failed!',
+      });
+    }
+    const isMatch = bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) {
+      res.status(401).json({
+        message: 'Incorrect password',
+      });
+    }
+    if (isMatch) {
       const accessToken = generateAccessToken({ user: req.body.email });
-      const refreshToken = generateRefreshToken({ user: req.body.email });
-
       res.status(200).json({
         accessToken: accessToken,
-        refreshToken: refreshToken,
-        userId: fetchedUser._id,
+        userId: user._id,
       });
-    })
-    .catch((err) => {
-      return res.status(401).json({
-        message: 'Invalid authentication credentials!',
-      });
-    });
+    }
+  });
 });
 
 //REFRESH TOKEN API
@@ -98,4 +88,4 @@ router.delete('/logout', (req, res) => {
   res.status(204).send('Logged out!');
 });
 
-module.exports = router;
+export default router;

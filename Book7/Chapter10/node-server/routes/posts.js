@@ -1,10 +1,9 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const express = require('express');
-const jwt = require('jsonwebtoken');
-
-const Post = require('../models/post');
-
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import Post from '../models/post.js';
 const router = express.Router();
 
 function validateToken(req, res, next) {
@@ -79,4 +78,4 @@ router.delete('/:id', validateToken, (req, res, next) => {
   });
 });
 
-module.exports = router;
+export default router;
