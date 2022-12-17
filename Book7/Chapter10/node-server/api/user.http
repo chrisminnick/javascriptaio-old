@@ -2,7 +2,7 @@ POST http://localhost:3000/api/user/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "chris@watzthisx2.com",
+    "email": "testuser4@test.com",
     "password": "testing123"
 }
 
@@ -12,24 +12,8 @@ POST http://localhost:3000/api/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "testuser@test.com",
+    "email": "testuser4@test.com",
     "password": "testing123"
 }
 
 ###
-
-POST http://localhost:3000/api/user/refreshToken HTTP/1.1
-content-type: application/json
-
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2hyaXNAbWlubmljay5jb20iLCJpYXQiOjE2Njc3NzA2Mzl9.GcP4Xb9WuXoEv2xUZfmmE9wKlTm1zU1Na4dnUpbYzJU"
-}
-
-###
-
-DELETE http://localhost:3000/api/user/logout HTTP/1.1
-content-type: application/json
-
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Njc3NzA2NTksImV4cCI6MTY2Nzc3MjQ1OX0.PZ_mlrrMqO5wM8mTY_L_1AtDY4uTQLdrJINpRAdMtkQ"
-}

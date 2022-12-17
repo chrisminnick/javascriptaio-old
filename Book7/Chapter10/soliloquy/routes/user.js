@@ -37,6 +37,7 @@ router.post('/signup', (req, res) => {
   });
 });
 
+// Logging in a user
 router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
